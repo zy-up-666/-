@@ -1,0 +1,251 @@
+/* 首页通用样式 */
+body,p,h1,h2,h3,h4,dl,dd{
+   margin: 0;     /*快捷键  m0 */
+}
+/* body{
+padding-bottom: 1000px;
+} */
+ul,ol{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+img{
+    vertical-align: middle;
+}
+button{
+    border: none;
+    background: none;
+    padding: 0;
+    outline: none;
+    cursor: pointer;
+}
+body{
+    background: #f4f4f4;
+}
+
+/* 登录弹窗 */
+
+/* 登陆弹窗打开就是一个遮罩层不会随着页面的上下翻动而发生变化 */
+.dialog{
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, .7);
+    
+    /* 固定定位 */
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    /* 隐藏弹窗 */
+    display: none;
+}
+/* 下面是一个类,中间没有空格 */
+.dialog.show{
+    display: flex;
+    /* 水平垂直居中 */
+    justify-content: center;
+    align-items: center;
+}
+.dialog .wrap{
+    /* button绝对定位父级相对定位 */
+    position: relative;
+}
+.dialog h3{
+    font-size: 24px;
+    line-height: 42px;
+    text-align: center;
+    color: #fffefe;
+}
+.dialog .close{
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: url(../imgs/dia-login-close.png) no-repeat center;
+}
+
+/* 轮播图公用样式 */
+
+.carousel{
+    /* 按钮指示器的父级相对定位 */
+    position: relative;
+    /* 图片排成一排才可以轮播所以需要溢出隐藏 */
+    overflow: hidden;
+}
+.carouselInner{
+    position: absolute;
+    display: flex;/*一行显示 */
+    left: 0;
+}
+.carouselIndicators{
+    position: absolute;
+    display: flex;
+}
+.carouselIndicators span{
+    cursor: pointer;
+    background-color: #fff;
+}
+.carouselIndicators span:hover,.carouselIndicators span.active{
+    background: #feb012;
+}
+/* 新闻热点 */
+#bg_bottom .carouselIndicators span.active{
+    width: 44px;
+}
+/*新闻热点de 选项卡  */
+.tabContent{
+	display: none;
+}
+.tabContent.active{
+    /* 新闻热点独占一行 */
+	display: block;
+}
+
+/* more */
+.more{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.more a{
+	width: 17px;
+	height: 17px;
+	background: url(../imgs/spr_icon.png);
+}
+
+/* 滚动条 */
+.scroll{
+	position: relative;
+	overflow: hidden;
+}
+.scrollContent{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.scrollBar{
+	width: 6px;
+	height: 100%;
+	background: rgba(200,200,200,.7);
+
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	border-radius: 8px;
+}
+.scrollBar span{
+    /* 行内元素不能设置宽高，所以将span设置成block */
+	display: block;
+	width: 100%;
+	height: 60px;
+	border-radius: 8px;
+	background: rgba(0, 0, 0, .5);
+
+	position: absolute; /*子绝父相 */
+	top: 0;
+}
+/* box */
+.box{
+	width: 1200px;
+	margin: 40px auto 0;
+    /* 弹性盒，left和right内容要在一排展示 */
+	display: flex;
+	justify-content: space-between;
+}
+/* 头部通用样式 */
+/* publicHead */
+.publicHead{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+.publicHead h3{
+	height: 30px;
+	font-size: 24px;
+	color: #24262d;
+    /* 伪元素定位精英爆料前面的小图标，此处不做定位直接弹性盒   */
+	display: flex;
+	align-items: center;
+}
+.publicHead h3::before{
+    /* 父级是弹性盒就不需要定位就可以设置宽高了 */
+	content: '';
+	width: 26px;
+	height: 26px;
+	margin-right: 10px;
+	background: url(../imgs/sprites.png);
+}
+.publicHead ul{
+	height: 30px;
+	display: flex;
+	border-bottom: 1px solid #dedede;
+}
+.publicHead li{
+	font-size: 16px;
+	color: #000;
+    /* 上内边距0，左右内边距30，下内边距3 */
+	padding: 0 30px 3px;
+    /* 选项卡选项的下边框特殊样式需要定位，所以父级相对定位 */
+	position: relative;
+	cursor: pointer;
+}
+.publicHead li:last-child{
+	padding-right: 0;
+}
+.publicHead li.more{
+    /* 前往资料站放不开换行了，不需要弹性盒 */
+	display: block;
+}
+.publicHead li.more a{
+    /* 去掉背景 */
+	background: none;
+	color: #000;
+    /*加上黑色下划线 */
+	border-bottom: 1px solid #000;
+}
+/* 除了最后一个选项卡其他的都设置鼠标悬浮样式 */
+.publicHead li.active, .publicHead li:not(:last-child):hover{
+	color: #efa611;
+	font-weight: bold;
+	border-bottom: 2px solid #efa611;
+}
+
+/* li标签除了第一个与最后一个其余的都有hover状态 */
+/* 第一个鼠标悬浮会变细，所以 :not(.active) */
+.publicHead li:not(:last-child):not(.active):hover{
+	font-weight: normal;
+}
+.publicHead li.active::after, .publicHead li:not(:last-child):hover::after{
+	content: '';
+	width: 10px;
+	height: 6px;
+    /* 下边框中间的点是伪元素插入 */
+	background: url(../imgs/sprites.png) -195px -30px;
+    /* 设置定位否则无显示 */
+	 position: absolute;
+	top: 26px;
+    /* 左右居中位置 */
+	left: 50%;
+	margin-left: -5px; 
+}
+
+/* 字体图标 */
+@font-face {
+	font-family: 'iconfont';
+	src: url('../font/iconfont.ttf') format('truetype');
+}
+.iconfont {
+	font-family: "iconfont" !important;
+	font-size: 16px;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+

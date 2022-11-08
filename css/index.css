@@ -1,0 +1,1758 @@
+@import url(public.css);
+
+/* top */
+#top{
+    height: 40px; /* 白色部分通栏高度 */
+   background: #fff;
+   border-bottom: 1px solid #f5f5f5;
+}
+#top .container{
+   width: 980px;
+   margin: 0  auto;/*内容水平居中 */
+
+   display: flex;/* 弹性盒模型 */
+   justify-content: space-between; /* 两端对齐 */
+}
+#top .left{
+   position: relative;
+}
+#top .logo{
+   margin: 0 20px;
+   position: relative;
+   z-index: 4;
+}
+#top .left span a{
+   position: absolute;
+   /* 绝对定位本身不占据空间，所以可以覆盖其他框 */
+   left: 0;
+   top: 0;
+   z-index: 3;
+   /* 数字大的会遮盖数字小的，所以logo会遮住大图 */
+
+   padding: 0 3px 3px; /* 上边 | 左边右边 | 下边 */
+   border-bottom: 1px solid #eee;
+   background: #fff;
+
+   display: none;  /* 最初不展示 */
+}
+#top .left span:hover a{
+   display: block;
+   /* 块级元素独占一行可以设置宽高 */
+}
+#top .right{
+   position: relative;
+   display: flex;
+}
+#top .right h3{
+   color: #464646;
+   font-size: 14px;
+   line-height: 40px;
+   /* 行高和父级top高度相同 */
+   /* 如果行高的值与容器的高度相等，那么文字垂直居中*/
+   font-weight: normal;/* 取消加粗 */
+
+   position: relative;/* icon需要绝对定位，所以父级相对定位 */
+   
+}
+#top .right h3 a{
+   color: #464646;  
+   /* 颜色正常显示黑色 */
+}
+#top .right h3 a:hover{
+   color: #ff4e00;
+   /* 鼠标浮在上面的时候显示红色 */
+}
+#top h3.text1{
+    margin-right: 20px;/*外边距设置两短语之间的距离 */
+
+   /* 成长守护平台占据了h3标签的宽度，如果插入icon需要空间内边距拓展 */
+   padding-left: 30px;
+}
+#top h3.text1::after{ /*after和before都可以，伪元素设置图标*/
+   content: '';
+   /* 行内元素需要固定内容才可以设置宽高 */
+   width: 30px;
+   height: 30px;
+   background: url(../imgs/title_sprite.png) -30px 0;/* 这两个数字是x轴y轴距离*/
+   /* 此时雪碧图无显示，因为content行内元素，宽高是撑不起的，需要固定定位 */
+   position: absolute;
+   left: 0;
+   top: 5px;
+   
+}
+#top h3.text2{
+   padding-right: 30px;/*内边距拓展右边空间放置雪碧图 */
+
+  /* 成长守护平台占据了h3标签的宽度，如果插入icon需要空间内边距拓展 */
+  cursor: pointer; /*鼠标悬停变成手*/
+}
+#top h3.text2::after{ /*after和before都可以，伪元素设置图标*/
+  content: '';
+  /* 行内元素需要固定内容才可以设置宽高 */
+  width: 30px;
+  height: 30px;
+  background: url(../imgs/title_sprite.png);
+  /* 此时雪碧图无显示，因为content行内元素，宽高是撑不起的，需要固定定位 */
+  position: absolute;
+  right: 3px;
+  top: 5px;
+
+   opacity: .1;/*设置透明度 */
+   transform: rotate(90deg);/*箭头旋转向下*/
+  
+}
+#top .right iframe{
+   display: none;
+   /* 原始状态不显示 */
+   width: 708px;
+   height: 582px;
+   /* 设置足够宽高则滚动条消失，但是占据文档流空间，挤了其他的元素 */
+
+   position: absolute;
+   /* 绝对定位不占据文档流了 */
+   right: 0;
+   top: 40px;
+
+   z-index: 4;
+}
+/* 鼠标经过显示 */
+#top h3.text2:hover iframe{
+   display: block;
+}
+
+/* nav1是横向导航 */
+#nav{
+    height: 134px;
+    background: url(../imgs/bg-nav.png) center no-repeat;
+    /* nav2是绝对定位 */
+    position: relative;
+
+}
+#nav .nav1{
+    /* login部分绝对定位脱离文档流父级使用相对定位 */
+    position: relative;
+    /* 固定宽度 */
+    width: 1200px;
+    /* 居中 */
+    margin: 0 auto;
+    /* 内容一行展示使用弹性盒模型 */
+    display: flex;
+   /* 设置层级让nav1盖住nav2 */
+   z-index: 2;
+}
+#nav .nav1 .title{
+   /* 图片文字一行展示使用弹性盒模型 */
+   display: flex;
+   /* 距离右侧边距40px */
+   margin-right: 40px;
+}
+#nav .nav1 .title a{
+   margin: 6px 20px 0 0;
+}
+/* 减少嵌套层数小幅度优化性能 */
+#nav .nav1 h1{
+   font-size: 24px;
+   color: #ffb400;
+   margin-top: 28px;
+   /* 新版本图片使用伪类定位,父级需要相对定位 */
+   position: relative;
+}
+#nav .nav1 h1 span{
+   font-size: 14px;
+   color: #fff;
+   /* span行内元素,变成块级元素让它独占一行 */
+   display: block;
+   /* 取消加粗 */
+   font-weight: normal;
+   margin-top: 2px;
+}
+/* 通过伪类实现新版本图标 */
+#nav .nav1 h1::after{
+   content: '';
+   width: 69px;
+   height: 19px;
+   /* 绝对定位脱离文档流 */
+   position: absolute;
+}
+#nav .nav1 ul{
+   display: flex;
+}
+#nav .nav1 li a{
+   /* 每个目录不是单纯文字他的区域是一块,其中包括文字,可以通过浏览器控制台查看 */
+   display: block;
+   width: 102px;
+   /* 如果行高的值与容器的高度相等，那么文字垂直居中。 */
+   height: 102px;
+   line-height: 102px;
+
+   font-size: 16px;
+   color: #fff;
+   /* 文字水平居中 */
+   text-align: center;
+}
+#nav .nav1 li a:hover{
+   color:#ffb400;
+}
+#nav .nav1 .login{
+   width: 126px;
+   height: 100px;
+   /* nav1相对定位login的定位依托于nav1,
+   同时绝对定位脱离文档流不占据空间title小字就不换行了 */
+   position: absolute;
+   top:0;
+   right: -120px;
+
+   /* 文字和icon弹性盒 */
+   display: flex;
+   /* 子元素纵向排布 */
+   flex-direction: column;
+   /* 水平垂直居中 */
+   justify-content: center;
+   align-items: center;
+}
+#nav .nav1 .login >span{
+   width: 46px;
+   height: 45px;
+
+   background: url(../imgs/dia-login-head.png) no-repeat;
+   cursor: pointer;
+}
+#nav .nav1 .login p{
+   color: #fff;
+}
+#nav .nav1 .login p span{
+   color: #ffb400;
+   cursor: pointer;
+}
+/* iframe悬浮状态没有遮盖导航条文字,处理方式设置iframe层级大的遮住小的 */
+/* nav2是hover之后的部分 */
+#nav .nav2{
+   /* 不设置宽度脱离文档流之后内容撑不开宽度就没有黑色背景 */
+   width: 100%;
+   height: 400px;
+   background: rgba(0, 0, 0, .5);
+   position: absolute;
+   left: 0;
+   top: 0;
+   z-index: 1;
+
+   /* 设置悬浮菜单初始不显示 */
+   height: 0;
+   overflow: hidden;
+   /* 悬浮菜单平滑出现 */
+   transition: height .3s ease;
+}
+/* 选中悬浮菜单的所有列 */
+/* 选择第一层ul的子元素 */
+#nav .nav2 > ul{
+   width: 1100px;
+   /* 如果左右外边距是auto,菜单整体右移,不会随着浏览器放缩而改变位置 */
+   margin: 115px 300px 0;
+   position: relative;
+   left: 389px;
+
+   display: flex;
+}
+#nav .nav2 li li{
+   width: 112px;
+   height: 40px;
+   line-height: 40px;
+   text-align: center;
+}
+#nav .nav2 a{
+   color: #fff;
+}
+#nav .nav2 a:hover{
+   color: #ffb400;
+}
+/* 红色圆形icon使用伪类 */
+#nav .nav2 .new::before, .hot::before{
+   content: 'N';
+   width: 18px;
+   height: 18px;
+   text-align: center;
+   line-height: 18px;
+   font-size: 12px;
+   /* 字体白色 */
+   color: #fff;
+   /* 背景红 */
+   background: #f31419;
+   /* 图标变圆 */
+   border-radius: 50%;
+
+   position: absolute;
+   left: -1px;
+   top: 12px;
+}
+/* 再来一个H覆盖覆盖前面的N */
+#nav .nav2 .hot::before{
+   content: 'H';
+   left: -1px;
+   top: 11px;
+}
+/* 样式写到这里所有的红色标签全部重叠在第一个身上了 */
+#nav .nav2 .new, .hot{
+   position: relative;
+}
+/* 由于菜单字数不同导致位置与文字的关系不太和谐 ,单独调整*/
+/* 第二列第四个,第五个 */
+#nav .nav2 ul > li:nth-child(2) li:nth-child(4)::before{
+   left: 8px;
+}
+#nav .nav2 ul > li:nth-child(2) li:nth-child(5)::before{
+   left: -8px;
+}
+/* 第四列第一个 */
+#nav .nav2 ul > li:nth-child(4) li:first-child::before{
+   left: -13px;
+}
+/* contact */
+#nav .contact span{
+   width: 132px;
+   padding: 6px;
+   background: #fff;
+   /* 图片不是和文字不是重叠,图片在标签左边 */
+   position: absolute;
+   /* 箭头和文字的位置 */
+   left: -158px;
+   /* 原始状态不展示二维码 */
+   display: none;
+}
+/* 父级设置相对位置 否则所有的二维码重叠在第一个的位置*/
+#nav .contact li{
+   position: relative;
+}
+#nav .contact img{
+   /* 让图片和父级一样大 */
+   width: 100%;
+}
+/* 伪元素制作箭头 */
+#nav .contact span::after{
+   content: '';
+   width: 0;
+   height: 0;
+   border-top: 10px solid transparent;
+   border-bottom: 10px solid transparent;
+   border-left: 20px solid #fff;
+   /*此时箭头是一个梯形*/
+   position: absolute;
+   right: -19px;
+}
+/* 调整图片位置和三角形指向 */
+#nav .contact li:nth-child(1) span{
+   top: -15px;
+}
+#nav .contact li:nth-child(1) span::after{
+   top: 26px;
+}
+#nav .contact li:nth-child(2) span{
+   top: -40px;
+}
+#nav .contact li:nth-child(2) span::after{
+   top: 50px;
+}
+#nav .contact li:nth-child(3) span{
+   top: -48px;
+}
+#nav .contact li:nth-child(3) span::after{
+   top: 58px;
+}
+#nav .contact li:nth-child(4) span{
+   top: -45px;
+}
+#nav .contact li:nth-child(4) span::after{
+   top: 55px;
+}
+
+#nav .contact li:hover span{
+   display: block;
+}
+/* 整个nav2初始状态不显示,不是display:none;改变高度
+设置nav2的高度为0,overflow:hidden */
+/* 悬浮菜单出现设置为nav的hover */
+#nav:hover .nav2{
+   height: 400px;
+
+}
+/* 悬浮菜单平滑出现设置nav2的transition */
+/* #nav .nav2 > ul{
+   width: 1100px;
+   margin: 115px 300px auto;
+   position: relative;
+   left: 389px;
+} */
+
+/* 登录弹窗 */
+#loginBox .wrap{
+   width: 634px;
+   height: 327px;
+   background: url(../imgs/dia-login-bg.png) no-repeat center;
+}
+#loginBox .btn{
+   display: flex;
+   justify-content: center;
+   margin-top: 50px;
+}
+#loginBox .btn a{
+   width: 130px;
+   height: 164px;
+   font-size: 0;
+   margin: 0 40px;
+}
+#loginBox .btn a:nth-child(1){
+   background: url(../imgs/dia-login-qq.png) no-repeat center;
+}
+#loginBox .btn a:nth-child(2){
+   background: url(../imgs/dia-login-wx.png) no-repeat center;
+}
+
+/* 首页背景 */
+#bg_top{
+   height: 650px;
+   background:#fff url(../imgs/bg1.jpg) no-repeat center;
+   margin-top: -134px;
+}
+#bg_bottom{
+   height: 562px;
+   background: #fff url(../imgs/bg2.jpg) no-repeat center;
+
+   padding-top: 20px;/* 两张图衔接处有一条线 */
+   
+}
+#bg_bottom .container{
+
+   width: 1200px;
+   margin: 0 auto;
+   /* 适龄提示的父级相对定位 */
+   position: relative;
+}
+#bg_bottom .tip{
+   width: 119px;
+   height: 154px;
+   background: url(../imgs/year-btn.png) no-repeat;
+   /* 适龄提示的图片有字但是搜索引擎不能抓取图片的文字不利于SEO优化，所以 */
+   text-indent: -9999px;
+   /* 防止超出 */
+   overflow: hidden;
+
+   position: absolute;
+   left: -135px;
+   top: 0;
+}
+#bg_bottom .top{
+   display: flex;
+   height: 320px;
+}
+#bg_bottom .download{
+   width: 180px;
+   background: url(../imgs/section1_ecod.png) no-repeat center;
+   text-align: center;
+}
+#bg_bottom .download h3{
+   font-size: 18px;
+   line-height: 36px;
+   color: #ffb007;
+   /* 取消加粗 */
+   font-weight: normal;
+}
+#bg_bottom .download a{
+   /* 块级元素才可以设置宽高 */
+   display: block;
+   height: 54px;
+   margin-bottom: 5px;
+/* 以图换字之后a标签的字消失，鼠标经过图片仍然是箭头 */
+   text-indent: -9999px;
+   /* 防止超出 */
+   overflow: hidden;
+}
+#bg_bottom .download img{
+   /* 图片设置宽度大小的当 */
+   width: 160px;
+}
+
+/* 轮播图 */
+#bg_bottom .carousel{
+   width: 590px;
+   position: relative;
+}
+#bg_bottom .carouselInner{
+    /* 一张图片和父级一样大，取父级的百分比 */
+   width: 200%;
+}
+#bg_bottom .carouselIndicators{
+   right: 17px;
+   bottom: 15px;
+}
+#bg_bottom .carouselIndicators span{
+   width: 20px;
+   height: 8px;
+   margin-right: 7px;
+}
+#bg_bottom .carouselIndicators span.active{
+   width: 44px;
+}
+/* 新闻热点 */
+#bg_bottom .news{
+   width: 430px;
+   background: #fff;
+}
+#bg_bottom .tabs{
+   height: 48px;
+   line-height: 48px;
+   /* 选项最左有距离 */
+   padding-left: 15px;
+   /* 两端对齐自动计算选项之间的间距 */
+   justify-content: space-between;
+   /* 一行展示 */
+   display: flex;
+}
+#bg_bottom .tabs li{
+   font-size: 16px;
+   color: #000;
+   text-align: center;
+   /* active状态下面有一个边框 */
+   /* 给avtive加边框尺寸会发生改变 */
+   border-bottom: 3px solid #fff;
+   margin: 0 17px;
+   cursor: pointer;
+
+}
+#bg_bottom .tabs li.active{
+   color: #ffb007;
+   border-color: #ffb007;
+   font-weight: bold;
+}
+#bg_bottom .tabs li:hover{
+   /* 设置选项卡选项鼠标悬浮在上显示为橙色 */
+   color: #ffb007;
+}
+/* 选项卡 */
+#bg_bottom .tabContent li{
+   font-size: 14px;
+   color: #000;
+   line-height: 35px;
+   padding-left: 35px;
+   /* 设置宽度，需要变成非行内元素，变成inlineblock会有问题所以使用弹性盒 */
+   display: flex;
+}
+#bg_bottom .tabContent li span{
+   color: #656565;
+   margin-right: 8px;
+}
+#bg_bottom .tabContent li a{
+   width: 290px;
+   color: #000;
+
+   white-space: nowrap;/* 段落中的文本不进行换行 */
+   overflow: hidden;
+   /* 内容会被修剪，并且其余内容是不可见的。 */
+   text-overflow:ellipsis ;
+   /* text-overflow 属性规定当文本溢出包含元素时发生的事情。
+   ellipsis	显示省略符号来代表被修剪的文本。 */
+}
+/*新闻热点鼠标悬浮在上方的时候显示橙色  */
+#bg_bottom .tabContent li a:hover{
+   color: #ffa100;
+}
+#bg_bottom .tabContent li i{
+   color: #24262d;
+   font-style: normal;
+   /* 原来是倾斜的，去倾斜 */
+}
+
+#bg_bottom .tabContent li:first-child{
+   /* 最新两个字的样式 */
+	background: #f7f7f7;
+   /* 撑开高度 */
+	line-height: 60px;
+	margin-bottom: 10px;
+	padding: 0 35px;
+	font-weight: bold;
+}
+#bg_bottom .tabContent li:first-child a{
+   /* 第一行特殊格式 */
+	/* width: 100%; */
+	color: #ffa100;
+	font-size: 16px;
+}
+#bg_bottom .bottom{
+	display: flex;
+	justify-content: space-between;
+	margin-top: 5px;
+}
+/* 适龄弹窗 */
+#yearBox{
+/* 初始不显示 */
+   display: none;
+}
+#yearBox .wrap{
+	width: 674px;
+	height: 613px;
+	background: url(../imgs/year-hint.png) no-repeat;
+}
+#yearBox .scroll{
+	width: 610px;
+	height: 470px;
+	margin: 50px auto 0;
+}
+#yearBox .scrollContent{
+	width: 584px;
+	font-size: 20px;
+	color: #535353;
+	line-height: 33px;
+}
+#yearBox .scrollContent p{
+	margin-bottom: 40px;
+}
+#yearBox .scrollContent h4{
+	font-size: 22px;
+	color: #dc7c00;
+	font-weight: normal;
+}  
+/* 精英爆料 */
+
+#section2 .left{
+   /* 精英爆料占据宽度为790 */
+   width: 790px;
+}
+/* 新玩法模式 */
+#section2 .left .tabContent{
+   height: 420px; /* 轮播图公用样式有overflow：hidden */
+   /* 轮播选项卡有overflow：hidden，但是其他选项卡也需要 */
+   overflow: hidden;
+   /* 子集元素绝对定位 */
+   position: relative;
+}
+#section2 .mode .carouselIndicators{
+   /* 居中显示 */
+   width: 100%;
+   justify-content: center;
+   /* 变成圆形 */
+   border-radius: 50%;
+  
+   margin: 0 5px;
+/* 解决轮播图指示器的小圆点出现在图片上方 */
+   top: 400px;
+   position: absolute;
+}
+#section2 .mode .carouselIndicators span{
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	margin: 0 5px;
+}
+/* 新武器皮肤 */
+
+/* 隐藏上一个选项卡内容 */
+/* #section2 .mode{
+   display: none;
+} */
+/* 样式正文 */
+#section2 .weapons{
+   background: url(../imgs/sec2_box.png) no-repeat center;
+}
+#section2 .weapons .text{
+   width: 610px;  /*文本宽度610px */
+   display: flex;
+   justify-content: space-between;
+   color: #fff;
+   margin: 19px 0 0 16px;
+}
+#section2 .weapons .text h4{
+   width: 108px;
+   line-height: 36px;
+   font-size: 20px;
+   text-align: center;
+}
+#section2 .weapons .name span{
+   display: block; /* 块级元素实现换行 */
+
+}
+#section2 .weapons .intro{
+	width: 350px;
+	font-size: 14px;
+}
+#section2  .accessory{
+   width: 146px; /*太小的话会排成一列 */
+   position: absolute;
+   right: 10px;
+   top: 15px;
+   text-align: right;
+}
+#section2 .accessory li{
+   display: inline-block;
+   font-size: 14px;
+   margin: 0 5px 5px;
+}
+#section2  .accessory img{
+   width: 54px;
+   height: 54px;
+   background: rgba(0, 0, 0, .2);
+   border: 1px solid rgba(255, 255, 255, .3);
+   padding: 2px;
+}
+#section2 .accessory p{
+   color: #fff;
+   margin-top: 5px;
+   text-align: center;
+}
+#section2 .weapon{
+   width: 475px;
+   height: auto;
+   position: absolute;
+   top: 110px;
+   left: 110px;
+}
+#section2 .armMenu{
+   width: 516px;
+   height: 80px;
+
+   position: absolute;
+   left: 0;
+   right: 0;
+   bottom: 15px;
+   margin: 0 auto;
+}
+#section2 .menu{
+   width: 100%;
+   height: 100%;
+   overflow: hidden;
+   position: relative;
+   /* 滑动菜单的子元素是绝对定位，父级相对定位 */
+}
+#section2 .menu ul{
+   position: absolute;
+   display: flex;
+   /* 滑动菜单部分设置相对定位和弹性盒 */
+}
+#section2 .menu li{
+   padding: 0 6px;
+   /* 滑动选项之间的间距6px */
+}
+#section2 .menu span{
+   width: 72px;
+   height: 52px;
+
+   display: flex; /*内容把高度撑开 */
+   /* 水平垂直居中 */
+   justify-content: center;
+   align-items: center;
+
+   border: 1px solid #666562;
+}
+#section2 .menu span img{
+   width: 90%;
+}
+#section2 .menu p{
+   font-size: 15px;
+   text-align: center;
+   color: #eaebeb;
+   margin-top: 5px;
+}
+/* 设置首个显示框及其字体橙色样式 */
+#section2 .menu .active span{
+   border-color: #fec146;
+}
+#section2  .menu .active p{
+   color: #fec146;
+}
+/* 设置箭头公共样式 */
+#section2  .armMenu .btn{
+   width: 25px;
+   height: 40px;
+   background:url(../imgs/sprites.png)  no-repeat;
+   
+   position: absolute;
+   top: 5px;
+   cursor: pointer;
+}
+/* 两个箭头各自的样式 */
+#section2 .armMenu .pre{
+   left: -40px;
+   background-position: -170px -170px;
+}
+#section2 .armMenu .next{
+	right: -40px;
+	background-position: -140px -170px;
+}
+#section2 .armMenu .disable{
+   opacity: .35;    /* 设置透明度使其看上去不能左移动  */
+   cursor: default;  /* 取消小手 */
+}
+/* 新地图 */
+
+/* 隐藏上一个选项卡内容 */
+/* #section2 .weapons{
+   display: none;
+} */
+/* <!-- 设置大图隐藏可以更直观看到小图的样式 --> */
+/* #section2  .newMap div img{
+   display: none;
+} */
+#section2.newMap  div img.active{
+   display: block;
+}
+#section2 .newMap ul{
+   width: 100%;
+   position: absolute;
+   bottom: 10px;
+   display: flex;
+   justify-content: center;
+}
+#section2 .newMap li{
+   text-align: center;
+   margin: 0 8px;
+   cursor: pointer;
+}
+#section2 .newMap li img{
+   width: 98px;
+   height: 53px;
+   /* 设置透明边框 */
+   border: 1px solid transparent;
+}
+#section2 .newMap li p{
+   line-height: 30px;
+   font-size: 16px;
+   color: #fff;
+}
+#section2 .newMap li.active img{
+   border-color: #efa611;
+}
+#section2 .newMap li.active p{
+   color: #efa611;
+}
+#section2 .vehicle ul{
+   display: flex;
+   position: absolute;
+   left: 0;
+}
+#section2 .vehicle .carouselIndicators {
+    /* 居中显示 */
+    width: 100%;
+    justify-content: center;
+    /* 变成圆形 */
+    border-radius: 50%;
+   
+    margin: 0 5px;
+ /* 解决轮播图指示器的小圆点出现在图片上方 */
+    top: 400px;
+    position: absolute;
+} 
+#section2 .vehicle .carouselIndicators span{
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	margin: 0 5px;
+}
+/* 活动中心 */
+#section2 .right{
+   width: 370px;
+}
+
+#section2 .right h3::before{
+   /* 调整背景雪碧图的位置显示正确的小图标 */
+   /* 图片相对容器左移30px，上下不动 */
+   background-position: -30px 0;
+}
+#section2 .right .publicHead{
+   /* 子元素竖着排列 */
+   flex-direction: column;
+   margin-bottom: 10px;
+}
+#section2 .right .publicHead ul{
+	width: 170px; 
+	margin-top: 15px;/*选项卡部分距离标题部分的距离 */
+	justify-content: space-between;
+}
+#section2 .right .publicHead li{
+   padding: 0 4px 3px;
+   color: #767676;
+}
+#section2 .right .publicHead li.active{
+   color: #efa611;
+}
+/* tabcontent公用样式设置了display：none */
+#section2 .calendar{
+   display: block;
+}
+#section2  .calendar .date{
+   margin-top: 13px;
+   font-size: 20px;
+   padding-bottom: 2px;
+   border-bottom: 1px solid #d9d9d9;
+   font-weight: bold;
+}
+#section2 .calendar .week{
+   width: 322px;
+   margin: 9px auto 0;
+   display: flex;
+   /* justify-content: space-evenly; */
+   color: #767676;
+}
+/* 如果这里使用注释的样式，下面的数字使用左边距和left */
+/* 会微瑕 */
+/* 所以单独设置每个week的li的宽高和左右边距 */
+/* 因为数字和星期的li样式有相同点，所以一起写 */
+#section2 .calendar .week li,#section2 .calendar .day li{
+   width: 30px;
+   height: 30px;
+   line-height: 30px;
+   text-align: center;
+   color: #767676;
+   /*星期之间，数字之间的间距 */
+   margin-left: 13px;
+}
+#section2 .calendar .day{
+   width: 322px;
+   margin: 0 auto;
+   position: relative;
+   /* 因为左右有箭头父级相对定位 */
+}
+#section2 .calendar .day ul{
+   display: flex; /*给日期设置弹性盒，此时数字一行排列 */
+}
+#section2 .calendar .day li{
+   position: relative;
+	cursor: pointer;
+}
+/* 选中日期的样式 */
+#section2 .calendar .day li.active{
+   color: #feb012;
+   border: 1px solid #feb012;
+   border-radius: 50%;
+   font-weight: bold;
+}
+/* 日期左右箭头 */
+#section2 .calendar .day .btn{
+   width: 9px;
+   height: 17px;
+   position: absolute;
+   top: 7px;
+   background: url(../imgs/next.png);
+   cursor: pointer;
+}
+#section2 .calendar .day .pre{
+   left: -24px;
+   transform: scale(-1);
+}
+#section2 .calendar .day .next{
+   right: -24px;
+}
+/* 数字下面的橙色点使用伪元素 */
+#section2  .calendar .day ul  :not(.active)::after{
+   content: '';
+   width: 6px;
+   height: 6px;
+   background: #fcc257;
+
+   position: absolute;
+   bottom: -3px;
+   left: 50%;
+   margin-left: -3px;
+   border-radius: 50%;
+}
+#section2 .scroll{
+   height: 277px;
+   margin-top: 13px;
+}
+#section2 .scrollContent{
+   width: 357px;
+   
+}
+#section2 .award{
+   background: #fff;
+   margin-bottom: 15px;
+   position: relative;
+  
+   height: 277px;
+}
+#section2 .award h4{
+   color: #dea42f;
+   font-size: 24px;
+   /* 取消加粗 */
+   font-weight: normal;
+   padding: 11px 0 5px 16px;
+}
+#section2 .award p{
+   font-size: 16px;
+   padding-left: 36px;
+   position: relative;
+}
+/* 活动时间活动奖励之前的有、橙色点 */
+#section2 .award p::before{
+   content: '';
+   width: 9px;
+   height: 9px;
+   border-radius: 50%;
+   background: #f77345;
+
+   position: absolute;
+   left: 18px;
+   top: 50%;
+   transform: translateY(-50%);
+}
+#section2 .award p span{
+   color: #f79b80;
+}
+#section2 .award ul{
+   margin-top: 5px;
+   padding-left: 37px;
+   display: flex;
+
+}
+#section2 .award li{
+   margin: 0 16px 20px 0; 
+}
+/* 活动奖励图片 */
+#section2 .award li span:nth-child(1){
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   width: 58px;
+   height: 58px;
+   background: #d9d9d9;
+   border:1px solid #fcc257;
+   
+}
+#section .award li img{
+   width: 80%;
+}
+/* 活动奖励文字 */
+#section2  .award li span:nth-child(2){
+   display: -webkit-box;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+
+   width: 58px;
+   font-size: 12px;
+}
+#section2 .award .zb{
+   width: 94px;
+   height: 101px;
+   position: absolute;
+   right: 0;
+   top: 0;
+   background: url(../imgs/zb-bg.png);
+}
+#section2 .award .zb span{
+   font-size: 25px;
+   color: #fff;
+   position: absolute;
+   top: 9px;
+   right: 6px;
+   transform:rotate(45deg);
+}
+/* 福利资讯 */
+
+/* 隐藏calendar */
+/*.calendar{  这样写的话选择器权重地，样式未生效
+   display: none;
+}*/
+#section2 .calendar{
+    display: none;/*权重相同覆盖前者 */
+}
+/* 或者去上面代码找到calendar去取消display:block;
+公有样式tabContent是display:none的 */
+#section2 .info{
+   background: #fff;
+   height: 378px;
+   margin-top: 17px;
+   padding: 0 17px;
+}
+#section2 .info h4{
+   font-size: 20px;
+   color: #dea42f;
+   font-weight: normal;
+   padding: 17px 0 10px;
+   border-bottom: 1px solid #d9d9d9;
+}
+#section2 .info ul{
+   margin: 10px auto 20px;
+}
+#section2 .info li{
+   display: flex;
+   justify-content: space-between;
+   line-height: 36px;
+   margin-bottom: 5px;
+   border-bottom: 1px solid #f5f5f5;
+}
+#section2 .info li a{
+   width: 257px;
+   color: #3a3a3a;
+
+   white-space: nowrap;/*合并空格文字不换行 */
+   overflow: hidden;/*溢出隐藏 */
+   text-overflow: ellipsis;/*省略号显示被截断的文字*/
+}
+/* 每行活动日期的特殊样式 */
+#section2 .info li span{
+   color: #989898;
+}
+/* 翻页按钮 */
+#section2 .info .btn{
+   text-align: center;
+}
+#section2 .info  .btn button{
+   width: 76px;
+   height: 28px;
+   font-size: 14px;
+   color: #fff;
+   background: #feb012;
+   margin: 0 17px;
+}
+/* 此处的button无实际功能，需要添加js完成功能 */
+
+/* section3 */
+/* 视频中心 */
+#section3 .movie{
+   width: 790px;
+   height: 432px;
+}
+#section3 .movie .publicHead h3::before{
+   background-position: -60px 0;
+}
+#section3 .movie .publicHead li{
+   padding: 0 40px 3px;
+}
+#section3 .movie .publicHead li.more{
+   padding: 0 0 3px 30px;
+}
+#section3 .movie .tabContent.active{
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap; /* 多行显示 */
+}
+#section3 .movie .tabContent li{
+   width: 249px;
+   margin-bottom: 7px;
+}
+#section3 .movie .tabContent li a{
+   display: block;
+   overflow: hidden;
+}
+/* 所有图片设置高度和相对定位 */
+#section3 .movie .tabContent li a:nth-child(1){
+   height: 135px;
+   /* 视频中心左边图标伪元素父级相对定位 */
+   position: relative;
+}
+#section3 .movie .tabContent li img{
+   width: 100%;
+}
+#section3 .movie  .tabContent li a:nth-child(2), 
+#section4 ul.tabContent li a:nth-child(2){
+   font-size: 16px;
+   margin: 4px 10px;
+   color: #3b3b3b;
+
+   	/* 多行省略号 */
+	display: -webkit-box;	/* 设置成webkit的弹性盒模型 */
+	-webkit-line-clamp: 2;	/* 设置文本显示的行数 */
+	-webkit-box-orient: vertical;	/* 设置盒子里子元素的排列方式，竖着排 */
+}
+/* 伪元素,视频中心左边的图标 */
+#section3 .movie .tabContent li a:nth-child(1)::after{
+   content: '';
+   width: 58px;
+   height: 58px;
+   /* 位置/尺寸 */
+   background: url(../imgs/cont-spr.png) -145px -5px / 208px  126px;
+
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   margin-top: -29px;
+   margin-left: -29px;
+
+   transform: scale(5);    /*放大五倍 */
+   opacity: 0; /* 完全透明 */
+   transition:  .3s;/* 过渡时间0.3s */
+}
+/* 鼠标指向当前视频时，背景白色高亮 */
+#section3 .movie .tabContent li:hover{
+   background: #fff;
+}
+/* 鼠标指向当前视频，文字橙色 */
+#section3 .movie .tabContent li:hover a:nth-child(2){
+   color: #efa611;
+}
+/* 热门排行 */
+#section3 .rank header{
+   display: flex;
+   justify-content: space-between;/* 两端对齐 */
+   margin-bottom: 20px;
+}
+#setion3 .rank h3{
+   height: 30px;
+   font-size: 24px;
+   color: #24262d;
+   /* align-items：设置了 flex 容器的对齐方式。 */
+   display: flex;
+   align-items: center;
+}
+#section3 .rank h3::before{
+   content:'';
+   width: 26px;
+   height: 26px;
+   margin-right: 10px;
+   background: url(../imgs/sprites.png) no-repeat -90px 0;
+}
+/* 日、周、月的格式 */
+#section3 .rank ul{
+   display: flex;
+   font-size: 20px;
+   color: #000;
+}
+#section3 .rank ul li{
+   margin: 0 5px;
+   cursor: pointer;
+}
+/* 鼠标悬浮状态和当前显示状态的样式 */
+#section3 .rank ul li:hover,#section3 .rank ul li.active{
+   color: #fcc257;
+   font-weight: bold;
+}
+/* 内容 */
+#section3 .rank img{
+   width: 90px;
+   height: 55px;
+}
+#section3 .rank ol{
+   /* 创建计数器，变量名为order */
+   counter-reset: order;
+}
+#section3 .rank ol li{
+   height: 53px;
+   display: flex;
+   justify-content: space-between;/*？ 让后面的观看数字右端对齐 */
+   align-items: center;/* 弹性容器垂直居中 */
+   border-bottom: 1px solid #d2d2d2;
+}   
+#section3 .rank ol li:last-child{
+   /* 最后一行没有下划线 */
+   border: none;
+}
+/* 每行前排使用伪元素+计数器+精灵图制作 */
+#section3 .rank  ol li::before{
+   counter-increment: order;	/* 递增变量 */
+	content: counter(order);	/* 取计数器的值 */
+
+   width: 18px;
+   height: 18px;
+   margin-right: 5px;
+   background: url(../imgs/sprites.png) no-repeat -120px -30px;
+
+   text-align: center;
+   line-height: 18px;
+   font-size: 14px;
+   color: #fff;
+}
+/* 前三个伪元素的样式 */
+#section3 .rank ol li.first::before{
+   background-position: -45px -30px;
+}
+#section3 .rank ol li:nth-child(2)::before{
+   background-position: -70px -30px;
+}
+#section3  .rank ol li:nth-child(3)::before{
+   background-position: -95px -30px;
+}
+#section3 .rank ol li a{
+   color: #000;
+}
+#section3 .rank ol li a:hover{
+   color: #dea42f;
+}
+#section3 .rank ol li.first{
+   padding-bottom: 10px;
+}
+/* 排行第一条的文字格式 */
+#section3 .rank ol li.first div{
+   width: 240px;
+   height: 56px;
+   margin-left: 14px;
+/* 弹性盒+纵向排列+两端对齐 */
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
+#section3 .rank ol li.first div a{
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+#section3 .rank ol li.first div p{
+   display: flex;
+   justify-content: space-between;
+   text-overflow: ellipsis;
+}
+/* 第一条内容的‘和平精英’的样式 */
+#section3 .rank ol li.first div p span:nth-child(1){
+   font-size: 14px;
+   position: relative;
+   padding-left: 20px;
+}
+/* 和平精英前面的小图标使用为元素 */
+#section3 .rank ol li.first div p span:nth-child(1)::before{
+   content: '';
+   position: absolute;
+   width: 14px;
+   height: 15px;
+   background: url(../imgs/sprites2.png) no-repeat -200px -95px;
+   left: 0;
+}
+#section3 .rank ol li.first div p span:nth-child(2){
+   font-size: 16px;
+}
+#section3 .rank ol li > span{
+   flex: 1 1 auto;
+}
+#section3 .rank ol li > span a{
+   display: block;
+   width: 270px;
+   font-size: 16px;
+
+   white-space:nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+#section3 .rank li i{
+   color: #c9c9c9;
+   font-size: 16px;
+   font-style: normal;
+}
+#section3 .rank button{
+   width: 100%;
+   line-height: 42px;
+   background: #ddd;
+   color: #4b4b4b;
+   font-size: 18px;
+}
+
+/* section4 */
+/* 攻略中心 */ 
+#section4 .left{
+   width: 435px;
+   height: 410px;
+   padding-bottom: 20px;
+}
+/* 设置攻略中心的伪元素 */
+#section4 .left .publicHead h3::before{
+   background-position: -120px 0;
+}
+#section4 .left .publicHead li{
+   padding: 0 10px 3px;
+}
+#section4  .left .publicHead li.more{
+   padding-right: 0;
+}
+/* 当前选项卡的内容布局样式 */
+/* 注意选择器的写法 */
+#section4  ul.tabContent.active{
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+}
+/* 每个选项卡的样式 */
+#section4 ul.tabContent li{
+   width: 212px;
+   margin-bottom: 10px;
+}
+/* 图片显示样式 */
+#section4 ul.tabContent li img{
+   width: 212px;
+   height: 126px;
+}
+/* 图片下面文字的样式 */
+#section4 ul.tabContent li a:nth-child(2){
+   padding: 10px 15px 0;
+   overflow: hidden;
+   margin: 0;
+}
+/*鼠标悬浮文字的颜色和样式 */
+#section4 ul.tabContent li:hover{
+   background: #fff;
+}
+#sdection4 ul.tabContentli:hover a{
+   color: #fcc257;
+}
+/* 阅读量和日期的样式 */
+#section4 ul.tabContent li p{
+   display: flex;
+   justify-content: space-between;
+   padding: 0 15px;
+   color: #a9a9a9;
+   font-size: 14px;
+}
+/* 精品栏目 */
+#section4 .right{
+   width: 725px;
+}
+#sectipn4 .right .publicHead h3::before{
+   background-position: -150px 0;
+}
+#section4 .right .publicHead li{
+   padding: 0 28px 3px;
+}
+#section4 .right .publicHead li.more{
+   padding-right: 0;
+}
+/* 每个单独选项卡的内容设置背景白色 */
+#section4 .right ul.tabContent li{
+   background: #fff;
+}
+/* section5和平人气主播 */
+#section5{
+	background: #fff;
+	height: 327px;
+   /* width: 100%; */
+}
+#section5 .box{
+	display: block;
+	margin: 15px auto;
+}
+#section5 .publicHead{
+	padding-top: 30px;
+}
+#section5 .publicHead ul{
+	border: none;
+}
+
+/* 伪元素调整雪碧图 */
+#section5 .publicHead h3::before{
+   background-position: 86px 0;
+}
+
+#section5 .publicHead ul{
+   /* 所有的头部选项卡下边有一条线这里不需要 */
+	border: none;
+}
+
+#section5 .photo{
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 24px;
+}
+#section5 .photo li{
+	font-size: 18px;
+	text-align: center;
+   /* 伪元素的父级使用相对定位 */
+	position: relative;
+}
+#section5 .photo li a{
+	color: #000;
+}
+#section5 .photo li img{
+	width: 140px;
+   display: block;	/*文字和图片独占一行 */
+	 margin-bottom: 20px; /*和文本的间距*/
+	border-radius: 50%;
+}
+#section5 .photo li:hover::after{
+	content: '';
+	position: absolute;
+	width: 120px;
+	height: 120px;
+	background: url(../imgs/sprites.png) no-repeat  0 -55px;
+	left: 10px;
+	top: 10px;
+   /* 鼠标放在伪元素上没有小手状 */
+	cursor: pointer;
+}
+#section5 .photo li:hover a{
+	color: #efa611;
+}
+
+/* section6游戏特色 */
+/* 经典轮播图 */
+#section6{
+   padding: 50px 0 140px;
+   width: 1200px;
+   margin: 40px auto 0;
+   justify-content: space-between;
+}
+#section6 h3{
+   height: 30px;
+   font-size: 24px;
+   color: #24262d;
+   display: flex;/* 因为要添加伪元素 */
+   align-items: center;    /* 居中对齐弹性盒的各项 <div> 元素： */
+}
+/* 伪元素设置图标 */
+#section6 h3::before{
+   content: '';
+   width: 26px;
+   height: 26px;
+   margin-right: 10px;
+   background: url(../imgs/cont-spr.png) no-repeat -139px -66px;
+}
+#section6 .carousel{
+   width: 100%;
+   height: 620px;
+   margin-top: 30px;
+   position: relative;
+}
+#section6 .carouselInner{
+   width: 100%;
+   height: 620px;
+   /* position: absolute; */
+   overflow: hidden;
+   z-index: 1;
+}
+
+/* 轮播图箭头 */
+#section6 .btn{
+	width: 60px;
+	height: 80px;
+	background: url(../imgs/sprites.png) no-repeat;
+   position: absolute;
+   top: 50%;
+	cursor: pointer;
+   z-index: 2;
+}
+#section6 .prev{
+	background-position: -70px -180px;
+   left: 0;
+}
+#section6 .next{
+	background-position: 0 -180px;
+   right: 0;
+}
+
+/* footer1 */
+#footer1{
+   height: 370px;
+   padding: 40px 0;
+   box-sizing: border-box; /* 高度不会受padding的影响而改变 */
+   /* 位置/尺寸 */
+  background: url(../imgs/footer-bg-new.jpg) no-repeat center/cover;
+  
+  display: flex;
+  flex-direction: column;/* 列 */
+  /* 均匀排列每个元素,每个元素周围分配相同的空间 */
+   justify-content: space-around;
+}
+/* 每一行内容的样式 */
+#footer1 ul{
+   width: 1200px;
+   margin: 0 auto; /* 容器居中*/
+   display: flex;
+   justify-content: center;/* 容器中的内容在容器中居中 */
+}
+#footer1 li{
+   position: relative;/* 父级相对定位 */
+   margin: 0 45px;
+   color: #999ea6;
+   text-align: center;
+}
+/* 二维码容器的样式 */
+#footer1 li div{
+   width: 136px;
+   height: 146px;
+   background: url(../imgs/footer-code-bg.png) no-repeat center;
+
+   position: absolute;/* 子集绝对定位 */
+   top: -160px;
+   left: 50%;
+   /* 水平向左移动一半的位置 */
+   transform: translateX(-50%);/*相当于translate（tx，0）  */
+   padding: 8px 8px 0;
+
+    /* 元素的宽高不会因为边框和内边距受到影响 */
+   /* 设置的边框和内边距的值是包含在 width 内的 */
+   box-sizing: border-box;
+
+   /* 完全透明 */
+   opacity: 0;
+   /* 隐藏元素保留空间占据位置 */
+   visibility: hidden;
+}
+#footer1 li img{
+   width: 100%;  /*  */
+}
+/* iconfont的样式 */
+#footer1 li span{
+   display: block; /* 行内元素不能设置宽高，块级元素可以   */
+   width: 67px;
+   height: 67px;
+   margin: 0 auto; /* 容器居中，iconfont也随之居中 */
+   border: 1px solid #999ea6;
+   border-radius: 50%;
+
+   font-size: 37px;
+   line-height: 67px;/* 行高的值=容器的高度，文字垂直居中 */
+   cursor: pointer;
+}
+/* 文字样式 */
+#footer1 li p{
+   font-size: 18px;
+   line-height: 30px;
+}
+#footer1 li:hover{
+   color: #e4af01;
+}
+/* iconfont的边框样式 */
+#footer1 li:hover span{
+   border-color: #e4af01;
+}
+/* 设置鼠标悬浮二维码出现，隐藏元素完全不透明且可见， */
+#footer1 li:hover div{
+   opacity: 1;
+   visibility: visible;
+   /* 完成过渡效果需要0.6s */
+   transition: .6s;
+}
+/* footer2 */
+#footer2{
+   background: #000;
+   font-size: 12px;
+   line-height: 20px;
+}
+#footer2 .containter{
+   width: 1200px;
+   height: 240px;
+   margin: 0 auto; /* 水平居中 */
+
+   display: flex;
+   justify-content: space-between;
+   align-items: center;/*  */
+}
+#footer2  .logo a{
+   margin-right: 10px;
+}
+#footer2 .left ul{
+   width: 320px;
+   display: flex;
+   flex-wrap: wrap;
+   /* 让弹性盒元素在必要的时候拆行 */
+   margin-top: 20px;
+}
+#footer2 .left li{
+	color: #fff;
+	margin: 0 3px;
+}
+#footer2 .right a, #footer2 .right p{
+	color: #fff;
+}
+
+/* footer2 */
+#footer2{
+	background: #000;
+	font-size: 12px;
+	line-height: 20px;
+}
+#footer2 .container{
+	width: 1200px;
+	height: 240px;
+	margin: 0 auto;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+#footer2 .logo a{
+	margin-right: 10px;
+}
+#footer2 .left ul{
+	width: 320px;
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 20px;
+}
+#footer2 .left li{
+	color: #fff;
+	margin: 0 3px;
+}
+#footer2 .right a, #footer2 .right p{
+	color: #fff;
+}
+
+
+/* 侧边导航 */
+#sideNav{
+	width: 200px;
+	background: url(../imgs/slide-munu2.png) no-repeat center top;
+
+	position: fixed;/* 固定定位： 元素的位置相对于浏览器窗口是固定位置。即使窗口是滚动的它也不会移动：*/
+	top: 35%;
+	right: 0;
+	padding-top: 180px;
+   z-index: 4;  /* 保证不被游戏轮播图遮挡 */
+}
+.toggleBtn{
+	width: 26px;
+	height: 82px;
+	background: url(../imgs/sq.png) no-repeat center;
+/* 绝对定位才会显示出来 */
+	position: absolute;
+	left: 9px;
+	top: 171px;
+	cursor: pointer;
+}
+/* 展示的二维码 */
+.downCode{
+	width: 120px;
+	height: 120px;
+   /* 没有边距就脱离了父级框 */
+	margin: 3px 0 40px 51px;
+}
+.codeWrap img{
+	width: 120px;
+	height: 120px;
+	margin: 10px 0 0 9px;
+}
+/* 图片容器 */
+.codeWrap div{
+	width: 137px;
+	height: 169px;
+	margin: 0 0 3px 42px;
+	height: 0;
+	overflow: hidden; /* 溢出隐藏 */
+	transition: .2s;  /* 完成过渡效果需要0.2s */
+}
+.gzh div{
+	background: url(../imgs/slide-munu-gzh.png) no-repeat 0 0;
+}
+.hpyd div{
+	background: url(../imgs/slide-munu-hpyd.png) no-repeat 0 0;
+}
+/* 以图换字 */
+.codeWrap span{
+	display: block;
+	width: 136px;
+	height: 41px;
+	margin: 0 0 3px 43px;
+	text-indent: -9999px;/*  文字离开视图之内*/
+	overflow: hidden;  /*溢出隐藏  */
+	cursor: pointer;
+}
+/* 设置背景图片 */
+.gzh span{
+	background: url(../imgs/gzh-btn.png) no-repeat center/cover;
+}
+.hpyd span{
+	background: url(../imgs/hpyd-btn.png) no-repeat center/cover;
+}
+.wb span{
+	background: url(../imgs/wb-btn.png) no-repeat center/cover;
+}
+
+.codeWrap span:hover + div{	/* + 是找到元素后面紧跟着的兄弟元素 */
+	height: 169px;
+}
+/* 侧边导航隐藏的第一种方法，通过js给侧边导航的id添加class=“disNone” */
+.disNone{
+	display: none;
+}
+/* 侧边导航消失的第二种方法 */
+/* 通过向右平移移动到看不到的地方 */
+.hidden{
+	transform: translateX(200px);
+}
+/* 注意一定要有.hidden  只有这样js给侧边导航的id添加class类的时候它才会生效 */
+.hidden .toggleBtn{
+  left: -26px;	/*收起的btn会贴在右边浏览器边缘 */
+	background: url(../imgs/zk.png) no-repeat center;
+}
